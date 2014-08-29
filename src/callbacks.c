@@ -815,7 +815,6 @@ GtkWidget *opengl_create(gchar * widget_name, gchar * string1,
 
     if(!(area = gtk_gl_area_new(attrs))) {
 	area = gtk_gl_area_new(attrs_buggy);
-	gui_error_msg(_("X.org 32 bit z-buffer bug detected.\nImplementing workaround; some artifacts may occur."));
     }
     if(!area)
 	return gtk_label_new(_("<OpenGL is buggy!>"));
