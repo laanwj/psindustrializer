@@ -71,6 +71,9 @@ int main(int argc, char *argv[])
 
     if (!g_thread_supported()) g_thread_init(NULL);
     gtk_init(&argc, &argv);
+#ifdef HAVE_OPENGL
+    gtk_gl_init (&argc, &argv);
+#endif
 
 #ifdef DRIVER_PULSE
     driver_list = g_slist_append(driver_list, &driver_pulse);

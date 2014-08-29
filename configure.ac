@@ -51,7 +51,7 @@ AC_ARG_ENABLE(openGL,   [ --disable-openGL          don't use openGL [default=no
                 have_opengl="no", have_opengl="yes")
 
 if test x$have_opengl != xno; then
-    PSI_MODULES="gtkgl-2.0 >= 1.99"
+    PSI_MODULES="gtkglext-1.0 >= 1.0"
     PKG_CHECK_MODULES(GTKGL, $PSI_MODULES,
 	[AC_DEFINE(HAVE_OPENGL, 1, [Set if OpenGL wanted])
 	AC_SUBST(GTKGL_CFLAGS)

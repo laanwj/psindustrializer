@@ -6,6 +6,7 @@ Wladimir van der Laan <laanwj@gmail.com>
     Adaptation for modern autotools (anno 2014)
     Use pulseaudio instead of ESD
     Move code to github
+    Switch to gtkglext instead of gtkglarea
 
 Yury Aliaev <mutab0r@rambler.ru>
     Code cleanup and adaptation for modern autotools;

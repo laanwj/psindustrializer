@@ -28,7 +28,7 @@
 #else
 #  include <math.h>
 #ifdef HAVE_OPENGL
-#  include <gtkgl/gtkglarea.h>
+#  include <gtk/gtkgl.h>
 #  include <GL/gl.h>
 #endif
 #  include <pthread.h>
@@ -653,10 +653,9 @@ static void glarea_update(GtkWidget * widget)
     if (widget == NULL || !GTK_WIDGET_REALIZED(widget))
 	return;
 
-    if (!GTK_IS_GL_AREA(widget))
-	return;
-
-    if (gtk_gl_area_make_current(GTK_GL_AREA(widget))) {
+    GdkGLDrawable *gldrawable = gtk_widget_get_gl_drawable (widget);
+    GdkGLContext *glcontext = gtk_widget_get_gl_context (widget);
+    if (gdk_gl_drawable_gl_begin (gldrawable, glcontext)) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	if (object != NULL) {
@@ -745,7 +744,11 @@ static void glarea_update(GtkWidget * widget)
 	    }
 	}
 
-	gtk_gl_area_swap_buffers(GTK_GL_AREA(widget));
+        if (gdk_gl_drawable_is_double_buffered (gldrawable))
+            gdk_gl_drawable_swap_buffers (gldrawable);
+        else
+            glFlush ();
+        gdk_gl_drawable_gl_end (gldrawable);
     }
 }
 
@@ -801,24 +804,22 @@ GtkWidget *opengl_create(gchar * widget_name, gchar * string1,
 			 gchar * string2, gint int1, gint int2)
 {
 #ifdef HAVE_OPENGL
-    /* This code is borrowed from a GtkGLArea sample app. */
+    GdkGLContext *glcontext = NULL;
+    GdkGLConfig *glconfig = NULL;
+    if (glconfig == NULL)
+    {
+        glconfig = gdk_gl_config_new_by_mode (GDK_GL_MODE_RGB | GDK_GL_MODE_DEPTH | GDK_GL_MODE_DOUBLE);
 
-    int attrs[] =
-	{ GDK_GL_RGBA, GDK_GL_DOUBLEBUFFER, GDK_GL_DEPTH_SIZE, 32,
-    GDK_GL_NONE};
-    int attrs_buggy[] =
-	{ GDK_GL_RGBA, GDK_GL_DOUBLEBUFFER, GDK_GL_DEPTH_SIZE, 16,
-    GDK_GL_NONE};
-
-    if(gdk_gl_query() == FALSE)
-	return gtk_label_new(_("<OpenGL not supported!>"));
-
-    if(!(area = gtk_gl_area_new(attrs))) {
-	area = gtk_gl_area_new(attrs_buggy);
+        if (glconfig == NULL)
+        {
+            glconfig = gdk_gl_config_new_by_mode (GDK_GL_MODE_RGB | GDK_GL_MODE_DEPTH);
+        }
     }
-    if(!area)
-	return gtk_label_new(_("<OpenGL is buggy!>"));
-    
+    if (glconfig == NULL)
+        return gtk_label_new(_("<OpenGL is buggy!>"));
+    area = gtk_drawing_area_new ();
+    gtk_widget_set_gl_capability (area, glconfig, glcontext, TRUE, GDK_GL_RGBA_TYPE);
+
     gtk_signal_connect(GTK_OBJECT(area), "expose_event",
 		       GTK_SIGNAL_FUNC(glarea_draw), NULL);
 

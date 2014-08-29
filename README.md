@@ -16,10 +16,13 @@ Requires:
     (`apt-get install libgtk2.0-dev`)
   * Gthread-2.0 version 0.15 or higher
     (`apt-get install libglib2.0-dev`)
-  * libgtkgl (gtkglarea) 1.99 or higher
-    (`apt-get install libgtkgl2.0-dev`)
   * libxml2 2.6.0 or higher
     (`apt-get install libxml2-dev`)
+
+Optional:
+
+  * gtkglext-1.0 version 1.0 or higher
+    (`apt-get install libgtkglext1-dev`) - required for visualization
 
 How to compile and install
 ---------------------------
