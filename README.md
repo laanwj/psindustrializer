@@ -1,5 +1,8 @@
 Power Station Industrializer
+-----------------------------
+
 Copyright (c) 2000 David A. Bartold
+Copyright (c) 2014 Wladimir J. van der Laan
 
 This program generates synthesized percussion sounds using physical modelling.
 The range of sounds possible include but is not limited to cymbol sounds,
@@ -15,15 +18,28 @@ Requires:
 Recommended:
   * K6 200mhz or faster
 
-How to compile and install:
+How to compile and install
+---------------------------
+
 Note: You *must* run "make install" for the About window to work.
-  ./configure --prefix=/usr
-  make
-  make install
 
-License:
-  All code except that in industrial.[ch] is licensed under the GNU General
-  Public License version 2, or at your option, any later version.
+```bash
+./configure --prefix=/usr
+make
+make install
+```
 
-  The industrial.[ch] files are licensed under the GNU Library General
-  Public License version 2, or at your option, any later version.
+Origin
+-------
+The original site for this project is [on sourceforge](https://sourceforge.net/projects/industrializer/), but
+it looks no longer maintained there.
+
+License
+--------
+
+All code except that in industrial.[ch] is licensed under the GNU General
+Public License version 2, or at your option, any later version.
+
+The industrial.[ch] files are licensed under the GNU Library General
+Public License version 2, or at your option, any later version.
+

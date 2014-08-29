@@ -2,6 +2,11 @@ David A. Bartold <foxx@mail.utexas.edu>
 
 Contributions:
 
+Wladimir van der Laan <laanwj@gmail.com>
+    Adaptation for modern autotools (anno 2014)
+    Use pulseaudio instead of ESD
+    Move code to github
+
 Yury Aliaev <mutab0r@rambler.ru>
     Code cleanup and adaptation for modern autotools;
     Output driver selection mechanism (currently implemented for EsounD and ALSA drivers);
