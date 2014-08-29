@@ -2,6 +2,7 @@ Power Station Industrializer
 -----------------------------
 
 Copyright (c) 2000 David A. Bartold
+
 Copyright (c) 2014 Wladimir J. van der Laan
 
 This program generates synthesized percussion sounds using physical modelling.
@@ -10,13 +11,15 @@ metallic noises, bubbly sounds, and chimes.  After a sound is rendered, it
 can be played and then saved to a .WAV file.
 
 Requires:
-  * Gnome desktop environment + devel files
-  * Glib 1.2.7+ (earlier versions have threading bugs)
-  * GtkGLArea widget (libgtkgl) + Mesa 3D or OpenGL
-    GtkGLArea available at: [http://www.student.oulu.fi/~jlof/gtkglarea/]
 
-Recommended:
-  * K6 200mhz or faster
+  * Gtk+-2.0 version 2.4.0 or higher
+    (`apt-get install libgtk2.0-dev`)
+  * Gthread-2.0 version 0.15 or higher
+    (`apt-get install libglib2.0-dev`)
+  * libgtkgl (gtkglarea) 1.99 or higher
+    (`apt-get install libgtkgl2.0-dev`)
+  * libxml2 2.6.0 or higher
+    (`apt-get install libxml2-dev`)
 
 How to compile and install
 ---------------------------
