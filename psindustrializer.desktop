@@ -1,0 +1,9 @@
+
+[Desktop Entry]
+Name=Power Station Industrializer
+Comment=Power Station Industrializer
+Exec=psindustrializer 
+Icon=psindustrializer.png
+Terminal=false
+MultipleArgs=false
+Type=Application

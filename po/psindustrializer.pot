@@ -1,0 +1,265 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-09-27 10:48+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/interface.c:88 src/interface.c:658
+#, c-format
+msgid "Real length: %.1f s"
+msgstr ""
+
+#: src/interface.c:174
+msgid "Industrializer configuration"
+msgstr ""
+
+#: src/interface.c:193
+msgid "Add extension to files without it"
+msgstr ""
+
+#: src/interface.c:203 src/callbacks.c:544 src/callbacks.c:994
+msgid "File overwrite warning"
+msgstr ""
+
+#: src/interface.c:240
+msgid "About Industrializer"
+msgstr ""
+
+#: src/interface.c:251
+msgid ""
+"Power Station Industrializer\n"
+"A Percussion Synthesizer\n"
+"\n"
+"Copyright (c) 2000\n"
+"David A. Bartold\n"
+"\n"
+"Licensed under the\n"
+"GNU GPL v2"
+msgstr ""
+
+#: src/interface.c:307
+msgid "Power Station Industrializer"
+msgstr ""
+
+#: src/interface.c:335
+msgid "Tube Circumference"
+msgstr ""
+
+#: src/interface.c:340
+msgid "Tube Height"
+msgstr ""
+
+#: src/interface.c:361
+msgid "Tube"
+msgstr ""
+
+#: src/interface.c:375
+msgid "Rod Length"
+msgstr ""
+
+#: src/interface.c:388
+msgid "Rod"
+msgstr ""
+
+#: src/interface.c:402
+msgid "Plane Length"
+msgstr ""
+
+#: src/interface.c:407
+msgid "Plane Width"
+msgstr ""
+
+#: src/interface.c:430
+msgid "Plane"
+msgstr ""
+
+#: src/interface.c:444
+msgid "Spring Tension"
+msgstr ""
+
+#: src/interface.c:449
+msgid "Speed"
+msgstr ""
+
+#: src/interface.c:454
+msgid "Damping time"
+msgstr ""
+
+#: src/interface.c:459
+msgid "Type of Actuation"
+msgstr ""
+
+#: src/interface.c:464
+msgid "Velocity"
+msgstr ""
+
+#: src/interface.c:469
+msgid "Sample Length"
+msgstr ""
+
+#: src/interface.c:474
+msgid "Final Decay"
+msgstr ""
+
+#: src/interface.c:509
+msgid "Compression"
+msgstr ""
+
+#: src/interface.c:510
+msgid "Perpendicular Hit"
+msgstr ""
+
+#: src/interface.c:540
+msgid "Check this if you want to stop rendering at given decay"
+msgstr ""
+
+#: src/interface.c:549
+msgid "Relative signal amplitude at which the rendering is stopped"
+msgstr ""
+
+#: src/interface.c:570
+msgid "3D View"
+msgstr ""
+
+#: src/interface.c:594
+msgid "Render"
+msgstr ""
+
+#: src/interface.c:597
+msgid "Render a sound"
+msgstr ""
+
+#. render, play, save are made inactive when rendering
+#: src/interface.c:600
+msgid "Play"
+msgstr ""
+
+#: src/interface.c:604
+msgid "Play rendered sound"
+msgstr ""
+
+#: src/interface.c:606
+msgid "Save..."
+msgstr ""
+
+#: src/interface.c:610
+msgid "Save sound to wave file"
+msgstr ""
+
+#: src/interface.c:613
+msgid "About..."
+msgstr ""
+
+#: src/interface.c:616
+msgid "About this program"
+msgstr ""
+
+#: src/interface.c:618
+msgid "Close"
+msgstr ""
+
+#: src/interface.c:621
+msgid "Close program"
+msgstr ""
+
+#: src/interface.c:623
+msgid "Save ins..."
+msgstr ""
+
+#: src/interface.c:626 src/callbacks.c:1007
+msgid "Save presets as instrument"
+msgstr ""
+
+#: src/interface.c:629
+msgid "Load ins..."
+msgstr ""
+
+#: src/interface.c:632 src/callbacks.c:1083
+msgid "Load instrument as presets"
+msgstr ""
+
+#: src/interface.c:640
+msgid "Status"
+msgstr ""
+
+#: src/interface.c:650
+msgid "Ready..."
+msgstr ""
+
+#: src/interface.c:666
+msgid "Setup..."
+msgstr ""
+
+#: src/interface.c:769
+msgid "Error"
+msgstr ""
+
+#: src/callbacks.c:278
+msgid "Done..."
+msgstr ""
+
+#: src/callbacks.c:303
+msgid "Rendering..."
+msgstr ""
+
+#: src/callbacks.c:315
+msgid "Sound driver error:\n"
+msgstr ""
+
+#: src/callbacks.c:412
+msgid "Save .WAV file"
+msgstr ""
+
+#: src/callbacks.c:521
+msgid "Could not write file."
+msgstr ""
+
+#: src/callbacks.c:545 src/callbacks.c:995
+msgid ""
+"Warning! File exists!\n"
+"Would you like to overwrite it?"
+msgstr ""
+
+#: src/callbacks.c:814 src/callbacks.c:842
+msgid "<OpenGL not supported!>"
+msgstr ""
+
+#: src/callbacks.c:818
+msgid ""
+"X.org 32 bit z-buffer bug detected.\n"
+"Implementing workaround; some artifacts may occur."
+msgstr ""
+
+#: src/callbacks.c:821
+msgid "<OpenGL is buggy!>"
+msgstr ""
+
+#: src/alsa.c:171
+msgid ""
+"PSIndustrializer internal error\n"
+"See stderr for details"
+msgstr ""
+
+#: src/alsa.c:180
+msgid "ALSA output"
+msgstr ""
+
+#: src/esnd.c:51
+msgid "Sorry, no diagnostics is available in EsounD driver"
+msgstr ""
+
+#: src/esnd.c:57
+msgid "Esound output"
+msgstr ""

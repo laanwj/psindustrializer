@@ -1,0 +1,66 @@
+How does this program generate sound?
+
+  The program models a shape, either a tube or a rod, as a series of masses
+  connected together by springs of unit length.  This virtual object is then
+  hit with a virtual hammer, and the resulting vibrations are simulated to
+  produce sound.
+
+How do you start this program?
+
+  To start the program, select these menu items:
+    Foot Menu > Multimedia > Power Station Industrializer
+
+What is the basic idea of how this program is to be used?
+
+  Once it is started, the basic idea of generating sounds is to first select
+  your parameters, click the "Render" button, and then "Play", and possibly
+  save the .WAV file by clicking "Save...".
+
+How do I use this program?
+
+  First, what you want to do is set the topology, or shape, of the item
+  you want to use.  Select one of the tabs, "Tube", "Rod", or "Plane".
+
+  Then, you want to set the size.  Larger sizes generally produce lower
+  frequencies and a more sophisticated sound but take longer to render.
+
+  Spring tension: Basically, all of the springs' unstretched size is one
+  unit.  By setting the tenseness, you control the distance between springs
+  along the longitudinal axis.
+
+  *  A value < 1.0 causes the springs to be under compression, therefore they
+     explode when rendered, and therefore the sound generated is explosive in
+     nature.
+
+  *  A value > 1.0 causes the springs to be under tension, therefore, the
+     sound is cleaner, higher pitched,  and more chime-like the bigger
+     this value gets.
+
+  Spring speed: This is more or less the k constant in the spring equation
+  F = -kx.  Higher values produce higher frequencies.
+
+  Too high of spring tenseness and speed may produce a frequency too high
+  to be heard.  If you hear nothing or only a click when a rendered sound
+  is played, reduce one or both of these parameters and re-render it.
+
+  Damping time sets friction in approximately the number of seconds it
+  takes to reduce the object's energy to one half.
+
+  Actuation: This sets the direction in which the object is hit.  If
+  it is set to "Compression" the object is hit along the path of the
+  longitudinal axis.  "Perpendicular Hit" means the object is hit
+  on the side perpendicular to the longitudinal axis.  The latter produces
+  a more percussive-like sound, while the former can produce sounds that
+  are similar in nature to brass wind instruments.
+
+  Velocity: Can change the harmonic content.  The higher the number, the
+  harder the hit.
+
+  Sample Length: Length of the sound produced in seconds.  A higher value
+  produces a long sample.
+
+  Once you have the parameters you'd like to try, click "Render" and wait
+  a few seconds (it can take a while!).  Then press "Play" once the button
+  becomes active again.  If you like the sound, save it by pressing the
+  "Save..." button and entering in the file name into the Gtk file dialog
+  box.

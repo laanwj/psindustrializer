@@ -1,0 +1,280 @@
+# Русская локализация для Power Station Industrializer.
+# Copyright (C) 2003 Free Software Foundation, Inc.
+# Yury Aliaev <mutab0r@rambler.ru>, 2003.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: psindustrializer-0.2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-09-27 10:48+0400\n"
+"PO-Revision-Date: 2003-12-06 16:01+0300\n"
+"Last-Translator: Yury Aliaev <mutab0r@rambler.ru>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=koi8-r\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/interface.c:88 src/interface.c:658
+#, c-format
+msgid "Real length: %.1f s"
+msgstr "Реальная длина: %.1f с"
+
+#: src/interface.c:174
+msgid "Industrializer configuration"
+msgstr "Настройки Industrializer"
+
+#: src/interface.c:193
+msgid "Add extension to files without it"
+msgstr "Добавлять расширения к именам файлов без них"
+
+#: src/interface.c:203 src/callbacks.c:544 src/callbacks.c:994
+msgid "File overwrite warning"
+msgstr "Предупреждения о перезаписи файла"
+
+#: src/interface.c:240
+msgid "About Industrializer"
+msgstr "О программе Industrializer"
+
+#: src/interface.c:251
+msgid ""
+"Power Station Industrializer\n"
+"A Percussion Synthesizer\n"
+"\n"
+"Copyright (c) 2000\n"
+"David A. Bartold\n"
+"\n"
+"Licensed under the\n"
+"GNU GPL v2"
+msgstr ""
+"Power Station Industrializer\n"
+"Ударный синтезатор\n"
+"\n"
+"Copyright (c) 2000\n"
+"David A. Bartold\n"
+"\n"
+"Лицензирован на условиях\n"
+"GNU GPL v2"
+
+#: src/interface.c:307
+msgid "Power Station Industrializer"
+msgstr "Power Station Industrializer"
+
+#: src/interface.c:335
+msgid "Tube Circumference"
+msgstr "Окружность трубки"
+
+#: src/interface.c:340
+msgid "Tube Height"
+msgstr "Длина трубки"
+
+#: src/interface.c:361
+msgid "Tube"
+msgstr "Трубка"
+
+#: src/interface.c:375
+msgid "Rod Length"
+msgstr "Длина прутка"
+
+#: src/interface.c:388
+msgid "Rod"
+msgstr "Пруток"
+
+#: src/interface.c:402
+msgid "Plane Length"
+msgstr "Длина плоскости"
+
+#: src/interface.c:407
+msgid "Plane Width"
+msgstr "Ширина плоскости"
+
+#: src/interface.c:430
+msgid "Plane"
+msgstr "Плоскость"
+
+#: src/interface.c:444
+msgid "Spring Tension"
+msgstr "Натяжение пружин"
+
+#: src/interface.c:449
+msgid "Speed"
+msgstr "Скорость звука"
+
+#: src/interface.c:454
+msgid "Damping time"
+msgstr "Время затухания"
+
+#: src/interface.c:459
+msgid "Type of Actuation"
+msgstr "Тип возбуждения"
+
+#: src/interface.c:464
+msgid "Velocity"
+msgstr "Жёсткость"
+
+#: src/interface.c:469
+msgid "Sample Length"
+msgstr "Длина сэмпла"
+
+#: src/interface.c:474
+msgid "Final Decay"
+msgstr "Конечное затухание"
+
+#: src/interface.c:509
+msgid "Compression"
+msgstr "Сжатие"
+
+#: src/interface.c:510
+msgid "Perpendicular Hit"
+msgstr "Перпендикулярный удар"
+
+#: src/interface.c:540
+msgid "Check this if you want to stop rendering at given decay"
+msgstr ""
+"Включите, если хотите, чтобы расчёт завершался по достижении заданного "
+"затухания"
+
+#: src/interface.c:549
+msgid "Relative signal amplitude at which the rendering is stopped"
+msgstr ""
+"Отностительная амплитуда сигнала, при которой происходит завершение расчёта"
+
+#: src/interface.c:570
+msgid "3D View"
+msgstr "Трёхмерный вид"
+
+#: src/interface.c:594
+msgid "Render"
+msgstr "Рассчитать"
+
+#: src/interface.c:597
+msgid "Render a sound"
+msgstr "Рассчитать звук"
+
+#. render, play, save are made inactive when rendering
+#: src/interface.c:600
+msgid "Play"
+msgstr "Проиграть"
+
+#: src/interface.c:604
+msgid "Play rendered sound"
+msgstr "Проиграть рассчитанный звук"
+
+#: src/interface.c:606
+msgid "Save..."
+msgstr "Сохранить..."
+
+#: src/interface.c:610
+msgid "Save sound to wave file"
+msgstr "Сохранить звук в виде файла wave"
+
+#: src/interface.c:613
+msgid "About..."
+msgstr "Справка..."
+
+#: src/interface.c:616
+msgid "About this program"
+msgstr "Об этой программе"
+
+#: src/interface.c:618
+msgid "Close"
+msgstr "Закрыть"
+
+#: src/interface.c:621
+msgid "Close program"
+msgstr "Закрыть программу"
+
+#: src/interface.c:623
+msgid "Save ins..."
+msgstr "Сохр. инстр..."
+
+#: src/interface.c:626 src/callbacks.c:1007
+msgid "Save presets as instrument"
+msgstr "Сохранить параметры как инструмент"
+
+#: src/interface.c:629
+msgid "Load ins..."
+msgstr "Загр. инстр..."
+
+#: src/interface.c:632 src/callbacks.c:1083
+msgid "Load instrument as presets"
+msgstr "Загрузить параметры из инструмента"
+
+#: src/interface.c:640
+msgid "Status"
+msgstr "Состояние"
+
+#: src/interface.c:650
+msgid "Ready..."
+msgstr "Готово..."
+
+#: src/interface.c:666
+msgid "Setup..."
+msgstr "Настройка..."
+
+#: src/interface.c:769
+msgid "Error"
+msgstr "Ошибка"
+
+#: src/callbacks.c:278
+msgid "Done..."
+msgstr "Сделано..."
+
+#: src/callbacks.c:303
+msgid "Rendering..."
+msgstr "Считаю..."
+
+#: src/callbacks.c:315
+msgid "Sound driver error:\n"
+msgstr "Ошибка драйвера вывода звука:\n"
+
+#: src/callbacks.c:412
+msgid "Save .WAV file"
+msgstr "Сохранить файл .WAV "
+
+#: src/callbacks.c:521
+msgid "Could not write file."
+msgstr "Невозможно записать файл"
+
+#: src/callbacks.c:545 src/callbacks.c:995
+msgid ""
+"Warning! File exists!\n"
+"Would you like to overwrite it?"
+msgstr ""
+"Внимание! Файл с таким именем существует!\n"
+"Перезаписать?"
+
+#: src/callbacks.c:814 src/callbacks.c:842
+msgid "<OpenGL not supported!>"
+msgstr "<OpenGL> не поддерживается!"
+
+#: src/callbacks.c:818
+msgid ""
+"X.org 32 bit z-buffer bug detected.\n"
+"Implementing workaround; some artifacts may occur."
+msgstr ""
+"Обнаружена ошибка реализации 32-разрядного z-буфера в X.org\n"
+"Возможны искажения трёхмерного изображения."
+
+#: src/callbacks.c:821
+msgid "<OpenGL is buggy!>"
+msgstr "<OpenGl> глючит!"
+
+#: src/alsa.c:171
+msgid ""
+"PSIndustrializer internal error\n"
+"See stderr for details"
+msgstr ""
+"Внутренняя ошибка PSIndustializer\n"
+"Подробносит мотрите в выводе в stderr"
+
+#: src/alsa.c:180
+msgid "ALSA output"
+msgstr "Вывод звука через ALSA"
+
+#: src/esnd.c:51
+msgid "Sorry, no diagnostics is available in EsounD driver"
+msgstr "Извините, диагностика для драйвера EsounD недоступна"
+
+#: src/esnd.c:57
+msgid "Esound output"
+msgstr "Вывод звука через EsounD"

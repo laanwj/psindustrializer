@@ -1,0 +1,12 @@
+David A. Bartold <foxx@mail.utexas.edu>
+
+Contributions:
+
+Yury Aliaev <mutab0r@rambler.ru>
+    Code cleanup and adaptation for modern autotools;
+    Output driver selection mechanism (currently implemented for EsounD and ALSA drivers);
+    Bugfixes;
+    Automatic sample length detection.
+    
+Conrad Parker <???>
+    Removed libpsphysmod dependency on glib

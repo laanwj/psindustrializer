@@ -1,0 +1,82 @@
+Thu Сен 27 10:56:23 2005  Yury Aliaev <mutab0r@rambler.ru>
+	* 0.2.5 released!
+	* Fixed some gettext issues
+	* Russian translation updated
+
+Sat Sep 24 14:00:00 2005  Yury Aliaev <mutab0r@rambler.ru>
+	* Added application icon support for window managers
+
+Wed Sep 21 19:01:55 2005  Yury Aliaev <mutab0r@rambler.ru>
+	* Various improvements in the file saving dialogs
+
+Wed Sep 07 16:57:21 2005  Yury Aliaev <mutab0r@rambler.ru>
+	* Industrializer now can save and load presets as instruments
+	(.psii -- PSIndustrializer Instrument, the XML-based format)
+
+Wed Mar 23 18:18:38 2005  Yury Aliaev <mutab0r@rambler.ru>
+	* Ooops! Fixed build without GL
+
+Sun Mar 20 13:56:00 2005  Yury Aliaev <mutab0r@rambler.ru>
+	* 0.2.4 complete! New xml routins for config saving/loading
+	* better progress calculation for given final attenuation
+
+Mon Jan 10 21:45:10 2005  Yury Aliaev <mutab0r@rambler.ru>
+	* 0.2.4 almost done, except config saving/loading
+
+Sat Nov 20 21:00:00 2004  Yury Aliaev  <mutab0r@rambler.ru>
+	* OpenGL code ported to Gtk+-2, also rendering bug fixed
+
+Sat Nov 6 18:56:08 2004  Yury Aliaev  <mutab0r@rambler.ru>
+	* Preliminary version of Gtk+-2 port works!!!
+
+Wed Jun 6 15:18:00 2004  Yury Aliaev  <mutab0r@rambler.ru>
+	* Added patch by Conrad Parker removing libpsphysmod dependency on
+	  glib
+
+Wed May 26 21:03:00 2004  Yury Aliaev  <mutab0r@rambler.ru>
+	* Automatic sample length detection;
+	* Russian translation updated
+
+Sat Dec 6 15:15:34 2003  Yury Aliaev  <mutab0r@rambler.ru>
+	* Changes merged with 0.2.2
+	* Russian translation updated
+
+Wed Dec 3 00:00:00 2003  Yury Aliaev  <mutab0r@rambler.ru>
+	* Spring tension setting accuracy increased
+	* Bugfix for mousewheel use with conrols
+	* Code cleanup and adaptation for modern autotools
+	* Added selectable sound output driver mechanism (currently supported
+	  EsounD and ALSA)
+	* Russian translation added
+
+Thu Mar 15 17:51:00 2001  David A. Bartold  <foxx@mail.utexas.edu>
+	* Added -L/usr/X11R6/lib to the OpenGL LDFLAGS
+	* Fixed "have_opengl not found error"
+	* Fixed compilation without OpenGL
+
+Sat Dec 30 01:30:00 2000  David A. Bartold  <foxx@mail.utexas.edu>
+	* Removed something or other
+
+Mon May 01 00:00:00 2000  David A. Bartold  <foxx@mail.utexas.edu>
+	* Added progress bar
+	* Split the calculation code into a library-- libpsphymod
+	* Changed calculation model slightly
+
+Mon Apr 17 22:56:00 2000  David A. Bartold  <foxx@mail.utexas.edu>
+	* Added plane topology
+	* Error conditions are checked when writing wave file
+	* Added perspective and lighting to the 3D view
+	* Changed all referenses of 'tensity' and 'tenseness' to 'tension'
+
+Mon Apr 10 19:37:00 2000  David A. Bartold  <foxx@mail.utexas.edu>
+	* Changing the Spring Tenseness hscale updates the OpenGL display
+	* Set AboutWindow's widget name in callbacks.c instead of in
+	  interface.c-- saves having to manually edit interface.c every time
+	* Set Perpendicular Hit as default
+	* Optimized the hscales' granularities
+	* Cleaned up desktop link
+	* Can now rotate OpenGL object by dragging cursor
+	* Release 0.1.1
+
+Sat Apr 08 19:54:00 2000  David A. Bartold  <foxx@mail.utexas.edu>
+	* Initial release 0.1
