@@ -2,7 +2,7 @@
 
 SUBDIRS = po psphymod src
 
-EXTRA_DIST = TODO README psindustrializer.spec \
+EXTRA_DIST = TODO README.md psindustrializer.spec \
 	psindustrializer.desktop \
 	psindustrializerrc \
 	psindustrial.png \

@@ -1,6 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-
-AC_INIT(psphymod/psphymod.h)
+AC_INIT([psindustrializer],[0.2.4])
 
 AC_CANONICAL_HOST
     AC_CANONICAL_TARGET
@@ -10,7 +9,7 @@ AC_CANONICAL_HOST
                ;;
        esac
 
-AM_INIT_AUTOMAKE(psindustrializer, 0.2.4)
+AM_INIT_AUTOMAKE([foreign])
 AM_CONFIG_HEADER(config.h)
 
 AC_PROG_CC
