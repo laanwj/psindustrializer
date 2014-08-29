@@ -4,9 +4,8 @@ datadir = @datadir@/@PACKAGE@
 
 INCLUDES = \
 	-I$(top_srcdir)/intl \
-	-DPACKAGE_LOCALE_DIR=\"@datadir@/locale\"
-
-#	$(GNOME_INCLUDEDIR)
+	-DPACKAGE_LOCALE_DIR=\"@datadir@/locale\" \
+	$(AUDIOFILE_CFLAGS)
 
 bin_PROGRAMS = psindustrializer
 
@@ -21,11 +20,10 @@ if DRIVER_ALSA
     psindustrializer_SOURCES += alsa.c alsa.h
 endif
 
-if DRIVER_ESD
-    psindustrializer_SOURCES += esnd.c esnd.h
+if DRIVER_PULSE
+    psindustrializer_SOURCES += pulse.c pulse.h
 endif
 
 AM_CFLAGS = -DPSI_DATADIR=\"$(datadir)\" -I.. -I../psphymod
 
-#psindustrializer_LDADD = -lgthread $(top_builddir)/psphymod/libpsphymod.so
-psindustrializer_LDADD = $(top_builddir)/psphymod/libpsphymod.la
+psindustrializer_LDADD = $(AUDIOFILE_LIBS) $(top_builddir)/psphymod/libpsphymod.la

@@ -34,8 +34,8 @@
 #include "alsa.h"
 #endif
 
-#ifdef DRIVER_ESD
-#include "esnd.h"
+#ifdef DRIVER_PULSE
+#include "pulse.h"
 #endif
 
 static guint current_driver;
@@ -72,11 +72,11 @@ int main(int argc, char *argv[])
     if (!g_thread_supported()) g_thread_init(NULL);
     gtk_init(&argc, &argv);
 
+#ifdef DRIVER_PULSE
+    driver_list = g_slist_append(driver_list, &driver_pulse);
+#endif
 #ifdef DRIVER_ALSA
     driver_list = g_slist_append(driver_list, &driver_alsa);
-#endif
-#ifdef DRIVER_ESD
-    driver_list = g_slist_append(driver_list, &driver_esd);
 #endif
 
     pw = getpwuid(getuid());

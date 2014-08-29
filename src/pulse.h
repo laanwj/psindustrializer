@@ -22,6 +22,6 @@
 
 #include "main.h"
 
-drv driver_esd;
+drv driver_pulse;
 
 #endif

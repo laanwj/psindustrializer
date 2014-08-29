@@ -28,6 +28,8 @@ CFLAGS="$CFLAGS -Wall"
 AC_LIBTOOL_DLOPEN
 AC_PROG_LIBTOOL
 
+AC_CHECK_LIB([m],[log10])
+
 dnl test for GTK+
 PSI_MODULES="gtk+-2.0 >= 2.4"
 PKG_CHECK_MODULES(GTK, $PSI_MODULES, [], AC_MSG_ERROR(Fatal error: Need gtk+-2.0 >= 2.4.0))
@@ -59,16 +61,11 @@ if test x$have_opengl != xno; then
 	LIBS="$LIBS $GTKGL_LIBS"])
 fi
 
-AM_PATH_AUDIOFILE(0.2.0,
-	[CFLAGS="$CFLAGS $AUDIOFILE_CFLAGS"
-	LIBS="$LIBS $AUDIOFILE_LIBS"
-	],
-	[AC_MSG_ERROR([* No sample I/O library found, fatal!])]
-)
+PKG_CHECK_MODULES([AUDIOFILE], [audiofile], [], [AC_MSG_ERROR(* No sample I/O library found, fatal!)])
 
-AC_ARG_ENABLE(esd,
-[  --disable-esd           Disable ESD driver (default = try)],
-esd_support=no)
+AC_ARG_ENABLE(pulse,
+[  --disable-pulse           Disable Pulseaudio driver (default = try)],
+pulse_support=no)
 
 AC_ARG_ENABLE(alsa,
 [  --disable-alsa           Disable ALSA driver (default = try)],
@@ -86,19 +83,17 @@ fi
 
 AM_CONDITIONAL(DRIVER_ALSA, test x$have_alsa = xyes)
 
-if test x$esd_support != xno; then
-  AM_PATH_ESD(0.2.8, have_esd=yes, have_esd=no)
-  if test x$have_esd = xyes; then
-    AC_DEFINE([DRIVER_ESD], 1, [Set if ESD driver wanted])
-    CFLAGS="$CFLAGS $ESD_CFLAGS"
-    LIBS="$LIBS $ESD_LIBS"
-  fi
-  AC_CHECK_FUNCS(esd_play_stream)
+if test x$pulse_support != xno; then
+  PKG_CHECK_MODULES([PULSE], [libpulse-simple],
+    [have_pulse=yes
+    AC_DEFINE([DRIVER_PULSE], 1, [Set if PULSE driver wanted])
+    CFLAGS="$CFLAGS $PULSE_CFLAGS"
+    LIBS="$LIBS $PULSE_LIBS" ], [ have_pulse=no ])
 fi
 
-AM_CONDITIONAL(DRIVER_ESD, test x$have_esd = xyes)
+AM_CONDITIONAL(DRIVER_PULSE, test x$have_pulse = xyes)
 
-if test $have_alsa != yes && test $have_esd != yes; then
+if test $have_alsa != yes && test $have_pulse != yes; then
     echo "*** No suitable sound output driver found on your system! ***"
     echo "*** You will be unable to preview the generated samples.  ***"
 fi

@@ -17,46 +17,55 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#include <esd.h>
+#include <pulse/simple.h>
 #include <glib.h>
 #include <unistd.h>
 
-#include "esnd.h"
+#include "pulse.h"
 
-static int h;
+pa_simple *s;
 
-static int esnd_open(void)
+static int pulse_open(void)
 {
-    h = esd_play_stream_fallback(ESD_BITS16 | ESD_MONO | ESD_STREAM |
-				 ESD_PLAY, 44100, NULL, NULL);
+    pa_sample_spec ss;
+    ss.format = PA_SAMPLE_S16NE;
+    ss.channels = 1;
+    ss.rate = 44100;
+    s = pa_simple_new(NULL, "PSIndustrializer", PA_STREAM_PLAYBACK, NULL, "sound", &ss,
+            NULL, NULL, NULL);
+    if (!s)
+        return -1;
     return 0;
 }
 
-static int esnd_play(gint16 * ptr, int n)
+static int pulse_play(gint16 * ptr, int n)
 {
-    int nbytes;
-
-    nbytes = write(h, (guint8 *) ptr, n << 1);
-    return nbytes >> 1;
+    if (!s)
+        return -1;
+    int nbytes = pa_simple_write(s, (const void *) ptr, n << 1, NULL);
+    if(nbytes < 0)
+        return -1;
+    return n;
 }
 
-static void esnd_close(void)
+static void pulse_close(void)
 {
-    close(h);
+    if(s)
+        pa_simple_free(s);
 }
 
-static const char *esnd_err(int errno)
+static const char *pulse_err(int errno)
 {
     static const char *message =
-	N_("Sorry, no diagnostics is available in EsounD driver");
+	N_("Sorry, no diagnostics is available in Pulseaudio driver");
 
     return message;
 }
 
-drv driver_esd = {
-    N_("Esound output"),
-    esnd_open,
-    esnd_play,
-    esnd_close,
-    esnd_err
+drv driver_pulse = {
+    N_("Pulseaudio output"),
+    pulse_open,
+    pulse_play,
+    pulse_close,
+    pulse_err
 };
