@@ -58,7 +58,7 @@ static double velocity = 1.0;
 static double sample_length = 1.0;
 gint16 *samples = NULL;
 static PSMetalObj *object = NULL;
-static GMutex *render_mutex = NULL;
+static GMutex render_mutex;
 static GtkWidget *area = NULL;
 static int obj_type = 0;
 static float x_angle = 90.0, y_angle = 0.0;
@@ -284,20 +284,20 @@ static void *do_render(void *appwin)
     for (i = 0; i < size; i++)
 	samples[i] = double_to_s16(data[i]);
 
-    g_mutex_unlock(render_mutex);
+    g_mutex_unlock(&render_mutex);
 
     return NULL;
 }
 
 static gint render_done(void *widget)
 {
-    if (g_mutex_trylock(render_mutex)) {
+    if (g_mutex_trylock(&render_mutex)) {
 	gui_set_sensitive(TRUE);
 	set_status_message(_("Done..."));
 	gui_set_size_label((gfloat) size / rate);
 	percent = 0.0;
 	set_percent(percent);
-	g_mutex_unlock(render_mutex);
+	g_mutex_unlock(&render_mutex);
         if (render_done_callback)
             render_done_callback(render_done_userdata);
 	return FALSE;
@@ -312,10 +312,7 @@ void start_render(CallbackFunc callback, gpointer userdata)
 {
     pthread_t thread;
 
-    if (render_mutex == NULL)
-	render_mutex = g_mutex_new();
-
-    if (!g_mutex_trylock(render_mutex))
+    if (!g_mutex_trylock(&render_mutex))
 	return;
 
     gui_set_sensitive(FALSE);
@@ -349,77 +346,75 @@ static void errmessage(errno)
 
 void trigger_play(gpointer user_data)
 {
-    if (render_mutex != NULL) {
-	if (!g_mutex_trylock(render_mutex))
-	    return;
+    if (!g_mutex_trylock(&render_mutex))
+        return;
 
-	if (samples != NULL) {
+    if (samples != NULL) {
 #ifdef WIN32
-	    HWAVEOUT out;
-	    WAVEFORMATEX format;
-	    LPWAVEHDR hdr;
+        HWAVEOUT out;
+        WAVEFORMATEX format;
+        LPWAVEHDR hdr;
 
-	    format.wFormatTag = WAVE_FORMAT_PCM;
-	    format.nChannels = 1;
-	    format.nSamplesPerSec = 44100;
-	    format.nBlockAlign = 2;
-	    format.nAvgBytesPerSec =
-		format.nSamplesPerSec * format.nBlockAlign;
-	    format.wBitsPerSample = 16;
-	    format.cbSize = 0;
+        format.wFormatTag = WAVE_FORMAT_PCM;
+        format.nChannels = 1;
+        format.nSamplesPerSec = 44100;
+        format.nBlockAlign = 2;
+        format.nAvgBytesPerSec =
+            format.nSamplesPerSec * format.nBlockAlign;
+        format.wBitsPerSample = 16;
+        format.cbSize = 0;
 
-	    waveOutOpen(&out, WAVE_MAPPER, &format, 0, 0, CALLBACK_NULL);
+        waveOutOpen(&out, WAVE_MAPPER, &format, 0, 0, CALLBACK_NULL);
 
-	    hdr = (LPWAVEHDR) GlobalAllocPtr(GMEM_MOVEABLE | GMEM_SHARE,
-					     (DWORD) sizeof(WAVEHDR));
+        hdr = (LPWAVEHDR) GlobalAllocPtr(GMEM_MOVEABLE | GMEM_SHARE,
+                                         (DWORD) sizeof(WAVEHDR));
 
-	    hdr->lpData =
-		GlobalAllocPtr(GMEM_MOVEABLE | GMEM_SHARE, size * 2);
-	    hdr->dwBufferLength = size * 2;
-	    hdr->dwFlags = 0;
-	    memcpy(hdr->lpData, samples, size * 2);
-	    waveOutPrepareHeader(out, hdr, sizeof(WAVEHDR));
-	    waveOutWrite(out, hdr, sizeof(WAVEHDR));
-	    while (!(hdr->dwFlags & WHDR_DONE)) {
-		Sleep(100);
-	    }
-	    waveOutUnprepareHeader(out, hdr, sizeof(WAVEHDR));
-	    GlobalFreePtr(hdr->lpData);
-	    GlobalFree(hdr);
+        hdr->lpData =
+            GlobalAllocPtr(GMEM_MOVEABLE | GMEM_SHARE, size * 2);
+        hdr->dwBufferLength = size * 2;
+        hdr->dwFlags = 0;
+        memcpy(hdr->lpData, samples, size * 2);
+        waveOutPrepareHeader(out, hdr, sizeof(WAVEHDR));
+        waveOutWrite(out, hdr, sizeof(WAVEHDR));
+        while (!(hdr->dwFlags & WHDR_DONE)) {
+            Sleep(100);
+        }
+        waveOutUnprepareHeader(out, hdr, sizeof(WAVEHDR));
+        GlobalFreePtr(hdr->lpData);
+        GlobalFree(hdr);
 
-	    waveOutClose(out);
+        waveOutClose(out);
 
 #else
-	    int n, nbytes;
-	    gint16 *ptr;
-	    int err;
+        int n, nbytes;
+        gint16 *ptr;
+        int err;
 
-	    ptr = samples;
-	    if ((err = driver->open()) >= 0) {
-		nbytes = size;
-		while (nbytes > 0) {
-		    if (nbytes > 2048)
-			n = 2048;
-		    else
-			n = nbytes;
-		    n = driver->play(ptr, n);
-		    if (n < 0) {
-			errmessage(n);
-			break;
-		    }
-		    if (n > 0) {
-			ptr += n;
-			nbytes -= n;
-		    }
-		}
-		driver->close();
-	    } else {
-		errmessage(err);
-	    }
+        ptr = samples;
+        if ((err = driver->open()) >= 0) {
+            nbytes = size;
+            while (nbytes > 0) {
+                if (nbytes > 2048)
+                    n = 2048;
+                else
+                    n = nbytes;
+                n = driver->play(ptr, n);
+                if (n < 0) {
+                    errmessage(n);
+                    break;
+                }
+                if (n > 0) {
+                    ptr += n;
+                    nbytes -= n;
+                }
+            }
+            driver->close();
+        } else {
+            errmessage(err);
+        }
 #endif
 
-	    g_mutex_unlock(render_mutex);
-	}
+        g_mutex_unlock(&render_mutex);
     }
 }
 
