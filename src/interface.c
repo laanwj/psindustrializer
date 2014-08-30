@@ -43,6 +43,7 @@ static gboolean	autocorrect_ext, overwarning;
 
 void gui_set_sensitive(gboolean sens)
 {
+    gtk_widget_set_sensitive(render, sens);
     gtk_widget_set_sensitive(play, sens);
     gtk_widget_set_sensitive(save, sens);
 }
@@ -603,13 +604,11 @@ GtkWidget *gui_create_AppWindow(void)
     play = gtk_button_new_with_label(_("Play"));
     gtk_widget_show(play);
     gtk_table_attach_defaults(GTK_TABLE(table), play, 1, 2, 0, 1);
-    gtk_widget_set_sensitive(play, FALSE);
     gtk_tooltips_set_tip(tooltips, play, _("Play rendered sound"), NULL);
 
     save = gtk_button_new_with_label(_("Save..."));
     gtk_widget_show(save);
     gtk_table_attach_defaults(GTK_TABLE(table), save, 2, 3, 0, 1);
-    gtk_widget_set_sensitive(save, FALSE);
     gtk_tooltips_set_tip(tooltips, save, _("Save sound to wave file"),
 			 NULL);
 

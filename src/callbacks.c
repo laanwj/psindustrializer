@@ -65,6 +65,11 @@ static float x_angle = 90.0, y_angle = 0.0;
 
 static gfloat percent = 0.0;
 
+typedef void (*CallbackFunc)(gpointer data);
+static gboolean need_render = TRUE;
+static CallbackFunc render_done_callback = NULL;
+static CallbackFunc render_done_userdata = NULL;
+
 static const gchar *types[] = {"tube", "rod", "plane"};
 #define OBJ_NUM 3 /* Last object index */
 
@@ -140,7 +145,7 @@ static void render_object()
 
 static void instrument_changed()
 {
-    gui_set_sensitive(FALSE);
+    need_render = TRUE;
 }
 
 gboolean
@@ -293,6 +298,8 @@ static gint render_done(void *widget)
 	percent = 0.0;
 	set_percent(percent);
 	g_mutex_unlock(render_mutex);
+        if (render_done_callback)
+            render_done_callback(render_done_userdata);
 	return FALSE;
     } else {
 	set_percent(percent);
@@ -301,11 +308,9 @@ static gint render_done(void *widget)
     return TRUE;
 }
 
-void on_render_clicked(GtkWidget * widget, gpointer user_data)
+void start_render(CallbackFunc callback, gpointer userdata)
 {
     pthread_t thread;
-
-    gui_set_sensitive(FALSE);
 
     if (render_mutex == NULL)
 	render_mutex = g_mutex_new();
@@ -313,14 +318,22 @@ void on_render_clicked(GtkWidget * widget, gpointer user_data)
     if (!g_mutex_trylock(render_mutex))
 	return;
 
+    gui_set_sensitive(FALSE);
     set_status_message(_("Rendering..."));
     percent = 0.0;
+    need_render = FALSE;
+    render_done_callback = callback;
+    render_done_userdata = userdata;
 
-    if (pthread_create(&thread, NULL, do_render, widget) != 0)
+    if (pthread_create(&thread, NULL, do_render, NULL) != 0)
 	do_render(NULL);
 
-    g_timeout_add(100, render_done, widget);
+    g_timeout_add(100, render_done, NULL);
+}
 
+void on_render_clicked(GtkWidget * widget, gpointer user_data)
+{
+    start_render(NULL, NULL);
 }
 
 static void errmessage(errno)
@@ -339,7 +352,7 @@ static void errmessage(errno)
     free(buffer);
 }
 
-void on_play_clicked(GtkButton * button, gpointer user_data)
+void trigger_play(gpointer user_data)
 {
     if (render_mutex != NULL) {
 	if (!g_mutex_trylock(render_mutex))
@@ -415,11 +428,17 @@ void on_play_clicked(GtkButton * button, gpointer user_data)
     }
 }
 
+void on_play_clicked(GtkButton * button, gpointer user_data)
+{
+    if (need_render)
+        start_render(trigger_play, NULL);
+    else
+        trigger_play(NULL);
+}
 
-void on_save_clicked(GtkButton * button, gpointer user_data)
+void trigger_save(gpointer user_data)
 {
     static GtkWidget *fileselector = NULL;
-
     if(samples != NULL) {
 	if(!fileselector)
 	    fileselector = gui_create_FileSelector(save_wav_callback,_("Save .WAV file"),
@@ -431,6 +450,14 @@ void on_save_clicked(GtkButton * button, gpointer user_data)
 
 	gtk_widget_show(fileselector);
     }
+}
+
+void on_save_clicked(GtkButton * button, gpointer user_data)
+{
+    if (need_render)
+        start_render(trigger_save, NULL);
+    else
+        trigger_save(NULL);
 }
 
 
@@ -880,6 +907,7 @@ on_length_spinbutton_changed (GtkEditable * editable, gpointer user_data)
 {
     length = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(editable));
     render_object();
+    instrument_changed();
 }
 
 
@@ -890,6 +918,7 @@ on_topologynotebook_switch_page (GtkNotebook * notebook,
 {
     obj_type = page_num;
     render_object();
+    instrument_changed();
 }
 
 
