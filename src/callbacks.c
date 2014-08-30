@@ -134,7 +134,7 @@ static void render_object()
     }
 
 #ifdef HAVE_OPENGL
-    glarea_update(area);
+    gtk_widget_queue_draw(area);
 #endif    
 }
 
@@ -794,7 +794,7 @@ static gint glarea_motion(GtkWidget * widget, GdkEventMotion * event)
     while (y_angle > 360.0)
 	y_angle -= 360.0;
 
-    glarea_update(widget);
+    gtk_widget_queue_draw(widget);
 
     return TRUE;
 }
