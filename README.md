@@ -18,6 +18,8 @@ Requires:
     (`apt-get install libglib2.0-dev`)
   * libxml2 2.6.0 or higher
     (`apt-get install libxml2-dev`)
+  * audiofile 0.2.0 or higher
+    (`apt-get install libaudiofile-dev`)
 
 Optional:
 
