@@ -62,6 +62,8 @@ static GMutex render_mutex;
 static GtkWidget *area = NULL;
 static int obj_type = 0;
 static float x_angle = 90.0, y_angle = 0.0;
+static gboolean decay_is_used = FALSE;
+static double decay_value = 0.0;
 
 static gfloat percent = 0.0;
 
@@ -227,6 +229,18 @@ on_actuation_comboentry_changed(GtkComboBox * combobox, gpointer user_data)
     instrument_changed();
 }
 
+void on_use_decay_toggled(GtkToggleButton * button, GtkWidget * target)
+{
+    decay_is_used = gtk_toggle_button_get_active(button);
+    gtk_widget_set_sensitive(target, decay_is_used);
+    instrument_changed();
+}
+
+void on_adj_decay_value_changed(GtkAdjustment * adj, gpointer user_data)
+{
+    decay_value = adj->value;
+    instrument_changed();
+}
 
 static void set_status_message(gchar * str)
 {
@@ -254,7 +268,7 @@ static void *do_render(void *appwin)
 	alloc_length = size;
     }
 
-    decay = gui_decay_is_used()? gui_get_decay() : 0;
+    decay = decay_is_used ? decay_value : 0;
 
     switch (obj_type) {
     case 0:

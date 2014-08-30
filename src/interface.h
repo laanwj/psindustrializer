@@ -25,8 +25,6 @@ void			gui_error_msg (gchar *msg);
 GtkWidget*		gui_ok_cancel_dialog (GtkWidget *dialog, const gchar *title, const gchar *msg,
 					      GCallback handler, gpointer data, gboolean default_button);
 
-inline gboolean		gui_decay_is_used (void);
-inline gfloat		gui_get_decay (void);
 void			gui_set_size_label (gfloat value);
 
 void			gui_set_sensitive(gboolean sens);

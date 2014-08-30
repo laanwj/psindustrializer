@@ -90,16 +90,6 @@ void gui_set_size_label (gfloat value)
     g_free(size_str);
 }
 
-inline gboolean gui_decay_is_used(void)
-{
-    return gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(check_decay));
-}
-
-inline gfloat gui_get_decay(void)
-{
-    return GTK_ADJUSTMENT(adj_decay)->value;
-}
-
 static inline
 GtkWidget* dialog_add_stock_button(GtkDialog* dialog, const gchar* stock_id, gint response)
 {
@@ -120,11 +110,6 @@ static void hang_tooltip(GtkWidget * widget, const gchar * text)
 	tips = gtk_tooltips_new();
     }
     gtk_tooltips_set_tip(tips, widget, text, NULL);
-}
-
-static void use_decay_toggled(GtkToggleButton * button, GtkWidget * target)
-{
-    gtk_widget_set_sensitive(target, gtk_toggle_button_get_active(button));
 }
 
 static void setup_clicked(GtkWidget * setup_win, gint response, gpointer data)
@@ -561,8 +546,10 @@ GtkWidget *gui_create_AppWindow(void)
     gtk_widget_show(thing);
     gtk_box_pack_start(GTK_BOX(hbox4), thing, TRUE, TRUE, 0);
     gtk_scale_set_digits(GTK_SCALE(thing), 2);
+    g_signal_connect(adj_decay, "value-changed",
+		     G_CALLBACK(on_adj_decay_value_changed), NULL);
     g_signal_connect(check_decay, "toggled",
-		     G_CALLBACK(use_decay_toggled), thing);
+		     G_CALLBACK(on_use_decay_toggled), thing);
     gtk_widget_show(hbox4);
     gtk_table_attach(GTK_TABLE(table3), hbox4, 1, 2, 6, 7,
 		     (GtkAttachOptions) (GTK_FILL),

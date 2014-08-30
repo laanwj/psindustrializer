@@ -63,6 +63,14 @@ on_actuation_comboentry_changed        (GtkComboBox	*combobox,
                                         gpointer         user_data);
 
 void
+on_use_decay_toggled                   (GtkToggleButton * button,
+                                        GtkWidget * target);
+
+void
+on_adj_decay_value_changed             (GtkAdjustment   *adj,
+                                        gpointer         user_data);
+
+void
 on_play_clicked                        (GtkButton       *button,
                                         gpointer         user_data);
 
