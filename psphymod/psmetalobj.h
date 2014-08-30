@@ -48,7 +48,6 @@ struct _PSMetalObj
   PSMetalObjNode *nodes[1];
 } PSMetalObj;
 
-static PSMetalObjNode *ps_metal_obj_node_new (int neighbors);
 void ps_metal_obj_node_free (PSMetalObjNode *n);
 PSMetalObj *ps_metal_obj_new (int size);
 void ps_metal_obj_free (PSMetalObj *obj);
