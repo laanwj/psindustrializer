@@ -37,6 +37,7 @@ How to compile and install
 Note: You *must* run "make install" for the About window to work.
 
 ```bash
+./autogen.sh
 ./configure --prefix=/usr
 make
 make install
