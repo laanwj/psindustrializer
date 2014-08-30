@@ -250,7 +250,7 @@ create_AboutWindow (void)
 	thing =
 	    gtk_label_new(_("Power Station Industrializer\n"
                         "A Percussion Synthesizer\n\n"
-                        "Copyright (c) 2000 David A. Bartold\n"
+                        "Copyright (c) 2000-2005 David A. Bartold\n"
                         "Copyright (c) 2014 Wladimir J. van der Laan\n\n"
                         "Licensed under the GNU GPL v2"));
 	gtk_widget_show(thing);

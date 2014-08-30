@@ -1,7 +1,7 @@
 ![icon](doc/readme-images/icon.png) Power Station Industrializer
 -----------------------------
 
-Copyright (c) 2000 David A. Bartold
+Copyright (c) 2000-2005 David A. Bartold
 
 Copyright (c) 2014 Wladimir J. van der Laan
 
