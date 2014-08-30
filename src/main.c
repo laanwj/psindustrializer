@@ -25,6 +25,9 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <pwd.h>
+#ifdef HAVE_OPENGL
+#  include <gtk/gtkgl.h>
+#endif
 
 #include "interface.h"
 #include "main.h"
@@ -69,7 +72,6 @@ int main(int argc, char *argv[])
     textdomain(PACKAGE);
 #endif
 
-    if (!g_thread_supported()) g_thread_init(NULL);
     gtk_init(&argc, &argv);
 #ifdef HAVE_OPENGL
     gtk_gl_init (&argc, &argv);
