@@ -3,4 +3,4 @@
 * Add an ability to process external sound files using created object
 * Maybe better interface (with pictograms?) for extra functions (presets save and load, file saving/loading)
   I'll return to this later, when there will be more buttons.
-* Hmmm, GtkGLArea seems buggy... and completely dead. So moving to GtkGLExt is nesseccary.
+* Automatically trigger a render on 'Play' and 'Save' and play when done.

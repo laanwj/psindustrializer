@@ -138,6 +138,11 @@ static void render_object()
 #endif    
 }
 
+static void instrument_changed()
+{
+    gui_set_sensitive(FALSE);
+}
+
 gboolean
 on_AppWindow_delete_event(GtkWidget *widget,
 			  GdkEvent *event, gpointer user_data)
@@ -156,6 +161,7 @@ void
 on_height_spinbutton_changed(GtkEditable * editable, gpointer user_data)
 {
     height = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(editable));
+    instrument_changed();
     render_object();
 }
 
@@ -164,6 +170,7 @@ void
 on_circum_spinbutton_changed(GtkEditable * editable, gpointer user_data)
 {
     circum = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(editable));
+    instrument_changed();
     render_object();
 }
 
@@ -171,6 +178,7 @@ on_circum_spinbutton_changed(GtkEditable * editable, gpointer user_data)
 void on_tension_hscale_changed(GtkWidget * widget, gpointer user_data)
 {
     tenseness = GTK_ADJUSTMENT(widget)->value;
+    instrument_changed();
     render_object();
 }
 
@@ -179,6 +187,7 @@ void
 on_speed_hscale_focus_out_event(GtkAdjustment * adj, gpointer user_data)
 {
     speed = adj->value;
+    instrument_changed();
 }
 
 
@@ -186,6 +195,7 @@ void
 on_damping_hscale_focus_out_event(GtkAdjustment * adj, gpointer user_data)
 {
     damping = adj->value;
+    instrument_changed();
 }
 
 
@@ -193,6 +203,7 @@ void
 on_velocity_hscale_focus_out_event(GtkAdjustment * adj, gpointer user_data)
 {
     velocity = adj->value;
+    instrument_changed();
 }
 
 
@@ -200,6 +211,7 @@ void
 on_length_hscale_focus_out_event(GtkAdjustment * adj, gpointer user_data)
 {
     sample_length = adj->value;
+    instrument_changed();
 }
 
 
@@ -207,6 +219,7 @@ void
 on_actuation_comboentry_changed(GtkComboBox * combobox, gpointer user_data)
 {
     actuation = gtk_combo_box_get_active(combobox);
+    instrument_changed();
 }
 
 
@@ -907,6 +920,7 @@ on_plane_length_spinbutton_changed (GtkEditable * editable,
 {
     plane_length =
 	gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(editable));
+    instrument_changed();
     render_object();
 }
 
@@ -917,6 +931,7 @@ on_plane_width_spinbutton_changed (GtkEditable * editable,
 {
     plane_width =
 	gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(editable));
+    instrument_changed();
     render_object();
 }
 
@@ -1072,6 +1087,7 @@ void load_ins_callback (GtkWidget * widget, gpointer user_data)
     xmlp_free(instr);
     
     gtk_widget_hide(widget);
+    instrument_changed();
 }
 
 void

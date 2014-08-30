@@ -43,7 +43,6 @@ static gboolean	autocorrect_ext, overwarning;
 
 void gui_set_sensitive(gboolean sens)
 {
-    gtk_widget_set_sensitive(render, sens);
     gtk_widget_set_sensitive(play, sens);
     gtk_widget_set_sensitive(save, sens);
 }
