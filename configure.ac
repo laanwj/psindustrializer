@@ -35,12 +35,6 @@ PKG_CHECK_MODULES(GTK, $PSI_MODULES, [], AC_MSG_ERROR(Fatal error: Need gtk+-2.0
 AC_SUBST(GTK_CFLAGS)
 AC_SUBST(GTK_LIBS)
 
-dnl test for gthread (maybe need to be removed)
-PSI_MODULES="gthread-2.0 >= 0.15"
-PKG_CHECK_MODULES(GTHREAD, $PSI_MODULES, [], AC_MSG_ERROR(Fatal error: Need gthread-2.0 support))
-AC_SUBST(GTHREAD_CFLAGS)
-AC_SUBST(GTHREAD_LIBS)
-
 dnl test for libxml2
 AM_PATH_XML2(2.6.0, [], AC_MSG_ERROR(Fatal error: Need libxml2 >= 2.6.0))
 

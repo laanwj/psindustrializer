@@ -14,8 +14,6 @@ Requires:
 
   * Gtk+-2.0 version 2.4.0 or higher
     (`apt-get install libgtk2.0-dev`)
-  * Gthread-2.0 version 0.15 or higher
-    (`apt-get install libglib2.0-dev`)
   * libxml2 2.6.0 or higher
     (`apt-get install libxml2-dev`)
   * audiofile 0.2.0 or higher
