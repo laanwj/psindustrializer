@@ -431,6 +431,14 @@ void on_play_clicked(GtkButton * button, gpointer user_data)
         trigger_play(NULL);
 }
 
+void on_space_pressed(gpointer user_data)
+{
+    if (need_render)
+        start_render(trigger_play, NULL);
+    else
+        trigger_play(NULL);
+}
+
 void trigger_save(gpointer user_data)
 {
     static GtkWidget *fileselector = NULL;

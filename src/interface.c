@@ -23,6 +23,7 @@
 
 #include <gtk/gtk.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
+#include <gdk/gdkkeysyms.h>
 
 #include "callbacks.h"
 #include "interface.h"
@@ -302,6 +303,7 @@ GtkWidget *gui_create_AppWindow(void)
     GtkObject *adj;
     gchar *size_str;
     GdkPixbuf *icon;
+    GtkAccelGroup *accel_group;
 
     tooltips = gtk_tooltips_new();
 
@@ -311,6 +313,11 @@ GtkWidget *gui_create_AppWindow(void)
     gtk_window_set_policy(GTK_WINDOW(AppWindow), FALSE, FALSE, FALSE);
     icon = gdk_pixbuf_new_from_file(PREFIX"share/pixmaps/"PACKAGE".png", NULL);
     gtk_window_set_icon(GTK_WINDOW(AppWindow), icon);
+
+    accel_group = gtk_accel_group_new();
+    gtk_accel_group_connect(accel_group, GDK_KEY_space, 0, 0,
+            g_cclosure_new(on_space_pressed, NULL, NULL));
+    gtk_window_add_accel_group(GTK_WINDOW(AppWindow), accel_group);
 
     vbox3 = gtk_vbox_new(FALSE, 0);
     gtk_widget_show(vbox3);

@@ -122,4 +122,6 @@ save_ins_clicked		       (GtkWidget       *widget,
 void
 load_ins_clicked		       (GtkWidget       *widget,
                                         gpointer         user_data);
+void
+on_space_pressed		       (gpointer         user_data);
 #endif
