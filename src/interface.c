@@ -247,7 +247,11 @@ create_AboutWindow (void)
 	gtk_box_pack_start(GTK_BOX(vbox7), thing, FALSE, FALSE, 0);
 
 	thing =
-	    gtk_label_new(_("Power Station Industrializer\nA Percussion Synthesizer\n\nCopyright (c) 2000\nDavid A. Bartold\n\nLicensed under the\nGNU GPL v2"));
+	    gtk_label_new(_("Power Station Industrializer\n"
+                        "A Percussion Synthesizer\n\n"
+                        "Copyright (c) 2000 David A. Bartold\n"
+                        "Copyright (c) 2014 Wladimir J. van der Laan\n\n"
+                        "Licensed under the GNU GPL v2"));
 	gtk_widget_show(thing);
 	gtk_box_pack_start(GTK_BOX(vbox7), thing, FALSE, FALSE, 0);
 
