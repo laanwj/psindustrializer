@@ -316,7 +316,7 @@ GtkWidget *gui_create_AppWindow(void)
 
     accel_group = gtk_accel_group_new();
     gtk_accel_group_connect(accel_group, GDK_KEY_space, 0, 0,
-            g_cclosure_new(on_space_pressed, NULL, NULL));
+            g_cclosure_new(G_CALLBACK(on_space_pressed), NULL, NULL));
     gtk_window_add_accel_group(GTK_WINDOW(AppWindow), accel_group);
 
     vbox3 = gtk_vbox_new(FALSE, 0);
