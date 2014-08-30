@@ -3,4 +3,5 @@
 * Add an ability to process external sound files using created object
 * Maybe better interface (with pictograms?) for extra functions (presets save and load, file saving/loading)
   I'll return to this later, when there will be more buttons.
-* Automatically trigger a render on 'Play' and 'Save' and play when done.
+* LV2 plugin for direct integration into MIDI+audio pipelines
+* On current CPUs it seems possible to do (pseudo-)realtime simulation, so we can just render as we go
