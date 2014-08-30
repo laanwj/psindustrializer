@@ -352,7 +352,7 @@ GtkWidget *gui_create_AppWindow(void)
     gtk_table_attach(GTK_TABLE(table1), label1, 0, 1, 0, 1,
 		     (GtkAttachOptions) (0), (GtkAttachOptions) (0), 0, 0);
 
-    height_spinbutton_adj = gtk_adjustment_new(10, 3, 30, 1, 10, 10);
+    height_spinbutton_adj = gtk_adjustment_new(10, 3, 30, 1, 10, 0);
     height_spinbutton =
 	gtk_spin_button_new(GTK_ADJUSTMENT(height_spinbutton_adj), 1, 0);
     gtk_widget_show(height_spinbutton);
@@ -360,7 +360,7 @@ GtkWidget *gui_create_AppWindow(void)
 		     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
 		     (GtkAttachOptions) (0), 0, 0);
 
-    circum_spinbutton_adj = gtk_adjustment_new(5, 3, 30, 1, 10, 10);
+    circum_spinbutton_adj = gtk_adjustment_new(5, 3, 30, 1, 10, 0);
     circum_spinbutton =
 	gtk_spin_button_new(GTK_ADJUSTMENT(circum_spinbutton_adj), 1, 0);
     gtk_widget_show(circum_spinbutton);
@@ -387,7 +387,7 @@ GtkWidget *gui_create_AppWindow(void)
     gtk_table_attach(GTK_TABLE(table2), label15, 0, 1, 0, 1,
 		     (GtkAttachOptions) (0), (GtkAttachOptions) (0), 0, 0);
 
-    length_spinbutton_adj = gtk_adjustment_new(5, 3, 200, 1, 10, 10);
+    length_spinbutton_adj = gtk_adjustment_new(5, 3, 200, 1, 10, 0);
     length_spinbutton =
 	gtk_spin_button_new(GTK_ADJUSTMENT(length_spinbutton_adj), 1, 0);
     gtk_widget_show(length_spinbutton);
@@ -419,7 +419,7 @@ GtkWidget *gui_create_AppWindow(void)
     gtk_table_attach(GTK_TABLE(table4), label18, 0, 1, 1, 2,
 		     (GtkAttachOptions) (0), (GtkAttachOptions) (0), 0, 0);
 
-    plane_length_spinbutton_adj = gtk_adjustment_new(7, 3, 30, 1, 10, 10);
+    plane_length_spinbutton_adj = gtk_adjustment_new(7, 3, 30, 1, 10, 0);
     plane_length_spinbutton =
 	gtk_spin_button_new(GTK_ADJUSTMENT(plane_length_spinbutton_adj), 1,
 			    0);
@@ -428,7 +428,7 @@ GtkWidget *gui_create_AppWindow(void)
 		     1, (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
 		     (GtkAttachOptions) (0), 0, 0);
 
-    plane_width_spinbutton_adj = gtk_adjustment_new(9, 3, 39, 1, 10, 10);
+    plane_width_spinbutton_adj = gtk_adjustment_new(9, 3, 39, 1, 10, 0);
     plane_width_spinbutton =
 	gtk_spin_button_new(GTK_ADJUSTMENT(plane_width_spinbutton_adj), 1,
 			    0);
