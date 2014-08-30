@@ -63,10 +63,6 @@ on_actuation_comboentry_changed        (GtkComboBox	*combobox,
                                         gpointer         user_data);
 
 void
-on_render_clicked                      (GtkWidget	*widget,
-					gpointer         user_data);
-
-void
 on_play_clicked                        (GtkButton       *button,
                                         gpointer         user_data);
 

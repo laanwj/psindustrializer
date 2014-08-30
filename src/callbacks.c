@@ -331,11 +331,6 @@ void start_render(CallbackFunc callback, gpointer userdata)
     g_timeout_add(100, render_done, NULL);
 }
 
-void on_render_clicked(GtkWidget * widget, gpointer user_data)
-{
-    start_render(NULL, NULL);
-}
-
 static void errmessage(errno)
 {
     static const char *message = N_("Sound driver error:\n");

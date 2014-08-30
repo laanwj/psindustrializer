@@ -36,14 +36,13 @@ static GtkObject *adj_decay;
 static GtkWidget *topologynotebook, *height_spinbutton, *circum_spinbutton, *length_spinbutton,
 		 *plane_length_spinbutton, *plane_width_spinbutton;
 static GtkWidget *speed_hscale, *damping_hscale, *actuation_combo, *velocity_hscale, *tension_hscale;
-static GtkWidget *render, *play, *save;
+static GtkWidget *play, *save;
 
 static guint	preselected_driver;
 static gboolean	autocorrect_ext, overwarning;
 
 void gui_set_sensitive(gboolean sens)
 {
-    gtk_widget_set_sensitive(render, sens);
     gtk_widget_set_sensitive(play, sens);
     gtk_widget_set_sensitive(save, sens);
 }
@@ -588,38 +587,33 @@ GtkWidget *gui_create_AppWindow(void)
 			  | GDK_BUTTON_RELEASE_MASK);
 #endif
 
-    table = gtk_table_new(2, 5, TRUE);
+    table = gtk_table_new(2, 4, TRUE);
     gtk_table_set_row_spacings(GTK_TABLE(table), 5);
     gtk_table_set_col_spacings(GTK_TABLE(table), 10);
     gtk_widget_show(table);
     gtk_box_pack_start(GTK_BOX(vbox3), table, TRUE, TRUE, 0);
     gtk_container_set_border_width(GTK_CONTAINER(table), 10);
 
-    render = gtk_button_new_with_label(_("Render"));
-    gtk_widget_show(render);
-    gtk_table_attach_defaults(GTK_TABLE(table), render, 0, 1, 0, 1);
-    gtk_tooltips_set_tip(tooltips, render, _("Render a sound"), NULL);
-    
-    /* render, play, save are made inactive when rendering */
+    /* play, save are made inactive when rendering */
     play = gtk_button_new_with_label(_("Play"));
     gtk_widget_show(play);
-    gtk_table_attach_defaults(GTK_TABLE(table), play, 1, 2, 0, 1);
+    gtk_table_attach_defaults(GTK_TABLE(table), play, 0, 1, 0, 1);
     gtk_tooltips_set_tip(tooltips, play, _("Play rendered sound"), NULL);
 
     save = gtk_button_new_with_label(_("Save..."));
     gtk_widget_show(save);
-    gtk_table_attach_defaults(GTK_TABLE(table), save, 2, 3, 0, 1);
+    gtk_table_attach_defaults(GTK_TABLE(table), save, 1, 2, 0, 1);
     gtk_tooltips_set_tip(tooltips, save, _("Save sound to wave file"),
 			 NULL);
 
     about = gtk_button_new_with_label(_("About..."));
     gtk_widget_show(about);
-    gtk_table_attach_defaults(GTK_TABLE(table), about, 3, 4, 0, 1);
+    gtk_table_attach_defaults(GTK_TABLE(table), about, 2, 3, 0, 1);
     gtk_tooltips_set_tip(tooltips, about, _("About this program"), NULL);
 
     close = gtk_button_new_with_label(_("Close"));
     gtk_widget_show(close);
-    gtk_table_attach_defaults(GTK_TABLE(table), close, 4, 5, 0, 1);
+    gtk_table_attach_defaults(GTK_TABLE(table), close, 3, 4, 0, 1);
     gtk_tooltips_set_tip(tooltips, close, _("Close program"), NULL);
 
     thing = gtk_button_new_with_label(_("Save ins..."));
@@ -691,8 +685,6 @@ GtkWidget *gui_create_AppWindow(void)
 		     G_CALLBACK(on_plane_width_spinbutton_changed),  NULL);
     g_signal_connect(actuation_combo, "changed",
 		     G_CALLBACK(on_actuation_comboentry_changed), NULL);
-    g_signal_connect(render, "clicked",
-		     G_CALLBACK(on_render_clicked), NULL);
     g_signal_connect(play, "clicked",
 		     G_CALLBACK(on_play_clicked), NULL);
     g_signal_connect(save, "clicked",
