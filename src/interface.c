@@ -243,7 +243,7 @@ create_AboutWindow (void)
 
 	vbox7 = GTK_DIALOG(AboutWindow)->vbox;
 
-	thing = gtk_image_new_from_file(PREFIX"share/"PACKAGE"/power_station_logo.xpm");
+	thing = gtk_image_new_from_file(PREFIX"/share/"PACKAGE"/power_station_logo.xpm");
 	gtk_widget_show (thing);
 	gtk_box_pack_start(GTK_BOX(vbox7), thing, FALSE, FALSE, 0);
 
@@ -311,7 +311,7 @@ GtkWidget *gui_create_AppWindow(void)
     gtk_window_set_title(GTK_WINDOW(AppWindow),
 			 _("Power Station Industrializer"));
     gtk_window_set_policy(GTK_WINDOW(AppWindow), FALSE, FALSE, FALSE);
-    icon = gdk_pixbuf_new_from_file(PREFIX"share/pixmaps/"PACKAGE".png", NULL);
+    icon = gdk_pixbuf_new_from_file(PREFIX"/share/pixmaps/"PACKAGE".png", NULL);
     gtk_window_set_icon(GTK_WINDOW(AppWindow), icon);
 
     accel_group = gtk_accel_group_new();
