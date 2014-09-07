@@ -24,6 +24,15 @@ Optional:
   * gtkglext-1.0 version 1.0 or higher
     (`apt-get install libgtkglext1-dev`) - required for visualization
 
+The following audio drivers can optionally be used for audio preview:
+
+  * JACK
+    (`apt-get install libjack-dev`)
+  * PulseAudio
+    (`apt-get install libpulse-dev`)
+  * ALSA
+    (`apt-get install libasound2-dev`)
+
 Screenshot
 -----------
 ![screenshot](doc/readme-images/screenshot.png)
