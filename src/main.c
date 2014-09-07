@@ -25,6 +25,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <pwd.h>
+#include <string.h>
 #ifdef HAVE_OPENGL
 #  include <gtk/gtkgl.h>
 #endif
@@ -41,6 +42,10 @@
 #include "pulse.h"
 #endif
 
+#ifdef DRIVER_JACK
+#include "jack.h"
+#endif
+
 static guint current_driver;
 
 GSList *driver_list = NULL;
@@ -50,10 +55,34 @@ inline guint psi_get_current_driver(void)
     return current_driver;
 }
 
+void psi_driver_errmessage(int errno)
+{
+    static const char *message = N_("Sound driver error:\n");
+    char *buffer, *drv_message;
+
+    drv_message = (char*)_(driver->err(errno));
+    buffer = malloc(strlen(message) + strlen(drv_message) + 1);
+
+    strcpy(buffer, message);
+    strcat(buffer, drv_message);
+
+    gui_error_msg(buffer);
+
+    free(buffer);
+}
+
 void psi_set_driver(guint drv)
 {
+    int err;
+    if (driver)
+        driver->close();
     driver = g_slist_nth_data(driver_list, drv);
     current_driver = drv;
+
+    if ((err = driver->open()) < 0) {
+        psi_driver_errmessage(err);
+        driver = NULL;
+    }
 }
 
 int main(int argc, char *argv[])
@@ -79,6 +108,9 @@ int main(int argc, char *argv[])
 
 #ifdef DRIVER_PULSE
     driver_list = g_slist_append(driver_list, &driver_pulse);
+#endif
+#ifdef DRIVER_JACK
+    driver_list = g_slist_append(driver_list, &driver_jack);
 #endif
 #ifdef DRIVER_ALSA
     driver_list = g_slist_append(driver_list, &driver_alsa);
@@ -132,6 +164,9 @@ int main(int argc, char *argv[])
 	xmlp_free_string(conf_sample_path);
     }
     xmlp_sync(cfg);
+
+    if (driver)
+        driver->close();
 
     return 0;
 }

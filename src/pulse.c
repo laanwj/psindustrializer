@@ -1,6 +1,7 @@
 /*  Power Station Industrializer
  *  Copyright (c) 2000 David A. Bartold
  *  Copyright (c) 2003 Yury Aliaev
+ *  Copyright (c) 2014 Wladimir J. van der Laan
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -50,8 +51,7 @@ static int pulse_play(gint16 * ptr, int n)
 
 static void pulse_close(void)
 {
-    if(s)
-        pa_simple_free(s);
+    pa_simple_free(s);
 }
 
 static const char *pulse_err(int errno)

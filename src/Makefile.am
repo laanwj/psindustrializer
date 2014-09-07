@@ -24,6 +24,10 @@ if DRIVER_PULSE
     psindustrializer_SOURCES += pulse.c pulse.h
 endif
 
+if DRIVER_JACK
+    psindustrializer_SOURCES += jack.c jack.h
+endif
+
 AM_CFLAGS = -DPSI_DATADIR=\"$(datadir)\" -I.. -I../psphymod
 
 psindustrializer_LDADD = $(AUDIOFILE_LIBS) $(top_builddir)/psphymod/libpsphymod.la

@@ -1,6 +1,7 @@
 /*  Power Station Industrializer
  *  Copyright (c) 2000 David A. Bartold
  *  Copyright (c) 2003 Yury Aliaev
+ *  Copyright (c) 2014 Wladimir J. van der Laan
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,44 +18,11 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef _PSI_MAIN
-#define _PSI_MAIN
+#ifndef _PSI_JACK
+#define _PSI_JACK
 
-#include <glib.h>
+#include "main.h"
 
-#ifndef _
-#if defined(ENABLE_NLS)
-#  include <libintl.h>
-#  define _(x) gettext(x)
-#  ifdef gettext_noop
-#    define N_(String) gettext_noop (String)
-#  else
-#    define N_(String) (String)
-#  endif
-#else
-#  define N_(String) (String)
-#  define _(x) (x)
-#  define gettext(x) (x)
-#endif
-#endif
-
-typedef struct _drv
-{
-    const char *description;
-    int (*open)(void);
-    int (*play)(gint16*, int);
-    void (*close)(void);
-    const char* (*err)(int);
-} drv;
-
-drv		*driver;
-
-/* global configuration variables */
-gboolean	conf_autoext, conf_overwrite_warning;
-gchar		*conf_instr_path, *conf_sample_path;
-
-inline guint				psi_get_current_driver	(void);
-void					psi_set_driver		(guint driver);
-void                                    psi_driver_errmessage   (int errno);
+drv driver_jack;
 
 #endif

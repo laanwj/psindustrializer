@@ -342,28 +342,12 @@ void start_render(CallbackFunc callback, gpointer userdata)
     g_timeout_add(100, render_done, NULL);
 }
 
-static void errmessage(errno)
-{
-    static const char *message = N_("Sound driver error:\n");
-    char *buffer, *drv_message;
-
-    drv_message = (char*)_(driver->err(errno));
-    buffer = malloc(strlen(message) + strlen(drv_message) + 1);
-
-    strcpy(buffer, message);
-    strcat(buffer, drv_message);
-
-    gui_error_msg(buffer);
-
-    free(buffer);
-}
-
 void trigger_play(gpointer user_data)
 {
     if (!g_mutex_trylock(&render_mutex))
         return;
 
-    if (samples != NULL) {
+    if (samples != NULL && driver != NULL) {
 #ifdef WIN32
         HWAVEOUT out;
         WAVEFORMATEX format;
@@ -402,34 +386,28 @@ void trigger_play(gpointer user_data)
 #else
         int n, nbytes;
         gint16 *ptr;
-        int err;
 
         ptr = samples;
-        if ((err = driver->open()) >= 0) {
-            nbytes = size;
-            while (nbytes > 0) {
-                if (nbytes > 2048)
-                    n = 2048;
-                else
-                    n = nbytes;
-                n = driver->play(ptr, n);
-                if (n < 0) {
-                    errmessage(n);
-                    break;
-                }
-                if (n > 0) {
-                    ptr += n;
-                    nbytes -= n;
-                }
+        nbytes = size;
+        while (nbytes > 0) {
+            if (nbytes > 2048)
+                n = 2048;
+            else
+                n = nbytes;
+            n = driver->play(ptr, n);
+            if (n < 0) {
+                psi_driver_errmessage(n);
+                break;
             }
-            driver->close();
-        } else {
-            errmessage(err);
+            if (n > 0) {
+                ptr += n;
+                nbytes -= n;
+            }
         }
 #endif
 
-        g_mutex_unlock(&render_mutex);
     }
+    g_mutex_unlock(&render_mutex);
 }
 
 void on_play_clicked(GtkButton * button, gpointer user_data)
