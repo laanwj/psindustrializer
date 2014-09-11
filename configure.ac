@@ -15,17 +15,14 @@ AM_CONFIG_HEADER(config.h)
 AC_PROG_CC
 AC_ISC_POSIX
 AC_HEADER_STDC
+AC_PATH_TOOL(AR, ar)
+AC_PATH_TOOL(RANLIB, ranlib)
 
 if test $GCC != yes; then
     AC_MSG_ERROR(Fatal error: Need gcc)
 fi
 
 CFLAGS="$CFLAGS -Wall"
-
-
-# initialize libtool, we need dynamic module support
-AC_LIBTOOL_DLOPEN
-AC_PROG_LIBTOOL
 
 AC_CHECK_LIB([m],[log10])
 

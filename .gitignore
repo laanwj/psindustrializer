@@ -1,6 +1,7 @@
 Makefile
 Makefile.in
 src/psindustrializer
+psphymod/libpsphymod.a
 compile
 config.h
 config.guess

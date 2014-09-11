@@ -30,4 +30,4 @@ endif
 
 AM_CFLAGS = -DPSI_DATADIR=\"$(datadir)\" -I.. -I../psphymod
 
-psindustrializer_LDADD = $(AUDIOFILE_LIBS) $(top_builddir)/psphymod/libpsphymod.la
+psindustrializer_LDADD = $(AUDIOFILE_LIBS) $(top_builddir)/psphymod/libpsphymod.a

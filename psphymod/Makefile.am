@@ -6,7 +6,7 @@ INCLUDES = \
 	-I$(top_srcdir)/intl \
 	$(GNOME_INCLUDEDIR)
 
-lib_LTLIBRARIES = libpsphymod.la
+noinst_LIBRARIES = libpsphymod.a
 
 psphymod_public_h_sources = $(strip \
 	psmetalobj.h \
@@ -17,8 +17,5 @@ psphymod_c_sources = $(strip \
 	psmetalobj.c \
 )
 
-libpsphymodincludedir = $(includedir)/psphymod
-libpsphymodinclude_HEADERS = $(psphymod_public_h_sources)
-libpsphymod_la_SOURCES = $(psphymod_c_sources)
-#libpsphymod_la_LIBADD = -lglib -lm
-libpsphymod_la_LIBADD = -lm
+noinst_HEADERS = $(psphymod_public_h_sources)
+libpsphymod_a_SOURCES = $(psphymod_c_sources)
