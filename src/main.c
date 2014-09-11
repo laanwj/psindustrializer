@@ -78,10 +78,12 @@ void psi_set_driver(guint drv)
         driver->close();
     driver = g_slist_nth_data(driver_list, drv);
     current_driver = drv;
-
-    if ((err = driver->open()) < 0) {
-        psi_driver_errmessage(err);
-        driver = NULL;
+    if (driver != NULL)
+    {
+        if ((err = driver->open()) < 0) {
+            psi_driver_errmessage(err);
+            driver = NULL;
+        }
     }
 }
 
@@ -152,7 +154,8 @@ int main(int argc, char *argv[])
     gtk_main();
 
     currd = g_slist_nth_data(driver_list, current_driver);
-    xmlp_set_string(cfg, "driver/", "current", (gchar *)currd->description);
+    if(currd)
+        xmlp_set_string(cfg, "driver/", "current", (gchar *)currd->description);
     xmlp_set_boolean(cfg, "behaviour/", "auto_ext", conf_autoext);
     xmlp_set_boolean(cfg, "behaviour/", "overwrite_warning", conf_overwrite_warning);
     if(conf_instr_path) {
