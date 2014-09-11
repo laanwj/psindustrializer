@@ -58,15 +58,15 @@ PKG_CHECK_MODULES([AUDIOFILE], [audiofile], [], [AC_MSG_ERROR(* No sample I/O li
 
 AC_ARG_ENABLE(pulse,
 [  --disable-pulse          Disable Pulseaudio driver (default = try)],
-pulse_support=no)
+pulse_support=$enableval)
 
 AC_ARG_ENABLE(alsa,
 [  --disable-alsa           Disable ALSA driver (default = try)],
-alsa_support=no)
+alsa_support=$enableval)
 
 AC_ARG_ENABLE(jack,
 [  --disable-jack           Disable JACK driver (default = try)],
-jack_support=no)
+jack_support=$enableval)
 
 if test x$alsa_support != xno; then
   AM_PATH_ALSA(0.9.0, have_alsa=yes, have_alsa=no)
@@ -100,7 +100,19 @@ fi
 
 AM_CONDITIONAL(DRIVER_JACK, test x$have_jack = xyes)
 
-if test $have_alsa != yes && test $have_pulse != yes && test $have_jack != yes; then
+echo -n "Audio drivers enabled: "
+if test "x$have_alsa" = "xyes"; then
+    echo -n "ALSA "
+fi
+if test "x$have_pulse" = "xyes"; then
+    echo -n "Pulseaudio "
+fi
+if test "x$have_jack" = "xyes"; then
+    echo -n "JACK "
+fi
+echo
+
+if test "x$have_alsa" != "xyes" && test "x$have_pulse" != "xyes" && test "x$have_jack" != "xyes"; then
     echo "*** No suitable sound output driver found on your system! ***"
     echo "*** You will be unable to preview the generated samples.  ***"
 fi
