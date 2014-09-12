@@ -90,6 +90,14 @@ static int jack_open(void)
         return -1;
     }
 
+    /* Create ringbuffer for communication with playback thread */
+    buffer = jack_ringbuffer_create(BUFFER_SIZE * sizeof(float));
+    if (buffer == NULL)
+    {
+        g_string_append_printf(errstr, "JACK: cannot allocate ring buffer\n");
+        goto error;
+    }
+
     if (jack_activate(client)) {
         g_string_append_printf(errstr, "JACK: cannot activate client\n");
         return -1;
@@ -109,14 +117,6 @@ static int jack_open(void)
             }
         }
         jack_free(ports);
-    }
-
-    /* Create ringbuffer for communication with playback thread */
-    buffer = jack_ringbuffer_create(BUFFER_SIZE * sizeof(float));
-    if (buffer == NULL)
-    {
-        g_string_append_printf(errstr, "JACK: cannot allocate ring buffer\n");
-        goto error;
     }
 
     g_string_free(errstr, TRUE);
